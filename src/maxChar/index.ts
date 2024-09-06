@@ -1,9 +1,9 @@
 export function maxChar(str: string) {
-  let charMap: { [char: string]: number } = {};
+  const charMap: { [char: string]: number } = {};
   let max = 0;
   let maxChar = '';
 
-  for (let char of str) {
+  for (const char of str) {
     if (charMap[char]) {
       charMap[char]++;
     } else {
@@ -11,7 +11,7 @@ export function maxChar(str: string) {
     }
   }
 
-  for (let char in charMap) {
+  for (const char in charMap) {
     if (charMap[char] > max) {
       max = charMap[char];
       maxChar = char;

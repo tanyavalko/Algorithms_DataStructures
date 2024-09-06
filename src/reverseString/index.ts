@@ -5,7 +5,7 @@ export function reverseString1(str: string): string {
 export function reverseString2(str: string): string {
   let reversed = '';
 
-  for (let character of str) {
+  for (const character of str) {
     reversed = character + reversed;
   }
 

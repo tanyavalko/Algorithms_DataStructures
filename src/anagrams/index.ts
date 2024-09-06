@@ -6,7 +6,7 @@ export function anagrams(stringA: string, stringB: string) {
     return false;
   }
 
-  for (let char in aCharMap) {
+  for (const char in aCharMap) {
     if (aCharMap[char] !== bCharMap[char]) {
       return false;
     }
@@ -18,7 +18,7 @@ export function anagrams(stringA: string, stringB: string) {
 function builderCharMap(str: string) {
   const charMap: { [char: string]: number } = {};
 
-  for (let char of str.replace(/[^\w]/g, '').toLowerCase()) {
+  for (const char of str.replace(/[^\w]/g, '').toLowerCase()) {
     charMap[char] = charMap[char] + 1 || 1;
   }
 

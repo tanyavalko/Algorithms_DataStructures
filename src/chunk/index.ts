@@ -11,7 +11,7 @@ export function chunk(array: Array<number>, size: number) {
 export function chunk2(array: Array<number>, size: number) {
   const newArr: Array<number>[] = [];
 
-  for (let element of array) {
+  for (const element of array) {
     const lastEl = newArr[newArr.length - 1];
 
     if (!lastEl || lastEl.length === size) {
@@ -26,7 +26,7 @@ export function chunk2(array: Array<number>, size: number) {
 
 export function chunk3(array: Array<number>, size: number) {
   const newArr: Array<number>[] = [];
-  let index: number = 0;
+  let index = 0;
 
   while (index < array.length) {
     newArr.push(array.slice(index, index + size));
