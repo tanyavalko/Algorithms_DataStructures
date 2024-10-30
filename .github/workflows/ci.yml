@@ -2,9 +2,13 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main # Production branch
+      - develop # Development branch
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - develop
 
 jobs:
   lint-and-build:
@@ -33,4 +37,9 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-        run: npx vercel --prod --token=$VERCEL_TOKEN --scope=$VERCEL_ORG_ID --confirm
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            npx vercel --prod --token=$VERCEL_TOKEN --scope=$VERCEL_ORG_ID --confirm
+          elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
+            npx vercel --token=$VERCEL_TOKEN --scope=$VERCEL_ORG_ID --confirm
+          fi
