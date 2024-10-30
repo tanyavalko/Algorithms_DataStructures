@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "https://my-project-dev.vercel.app",
+      "env": ["development"]
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "https://my-project-dev.vercel.app",
+      "env": ["preview"]
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": "https://api.example.com/$1",
+      "env": ["production"]
+    }
+  ]
+}
