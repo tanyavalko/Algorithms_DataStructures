@@ -1,3 +1,3 @@
 export const DeployOnDevComp = () => {
-  return <div>It deployed on Dev</div>;
+  return <div>It deployed on Devv</div>;
 };
