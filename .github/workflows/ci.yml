@@ -36,14 +36,34 @@ jobs:
       - name: Run build
         run: npm run build
 
-      - name: Deploy to Vercel
+  deploy-production:
+    needs: lint-and-build
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/prod-')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Production (Vercel)
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-        run: |
-          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            npx vercel --prod --token=$VERCEL_TOKEN --scope=$VERCEL_ORG_ID --confirm
-          elif [ "${{ github.ref }}" == "refs/heads/develop" ]; then
-            npx vercel --token=$VERCEL_TOKEN --scope=$VERCEL_ORG_ID --confirm
-          fi
+        run: npx vercel --prod --token=$VERCEL_TOKEN --scope=$VERCEL_ORG_ID --confirm
+
+  deploy-development:
+    needs: lint-and-build
+    if: github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/tags/release-' || startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to Development (Vercel)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+        run: npx vercel --token=$VERCEL_TOKEN --scope=$VERCEL_ORG_ID --confirm
