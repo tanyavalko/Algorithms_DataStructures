@@ -33,6 +33,9 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  position: absolute;
+  top: 60px;
+  left: 120px;
 }
 
 .App-link {
