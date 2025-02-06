@@ -6,6 +6,7 @@ function App() {
     <div className="App">
       <header className="App-header">This is Develop</header>
       <DeployOnDevComp />
+      <div>Some text</div>
     </div>
   );
 }
