@@ -5,6 +5,10 @@ on:
     branches:
       - main # Production branch
       - develop # Development branch
+    tags:
+      - 'v*' # Тригер для тегів (наприклад, v1.0.0)
+      - 'release-*' # Matches tags like release-1.0, release-1
+      - 'prod-*' # Matches tags like prod-2024-01-01
   pull_request:
     branches:
       - main
